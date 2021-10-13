@@ -20,11 +20,26 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 
 module.exports = function removeKFromList(l, k) {
-  if (l == null) {
-    return l;
-  }
-  if (l.value === k) {
+  //   проверяем первые значения в списке == k, тогда меняем начало списка, на следующий елемент
+  while (l.value == k) {
     l = l.next;
+  }
+
+  currentNode = l;
+  nextNode = currentNode.next;
+
+  //  проверяем на совпадения весь список до конца
+  while (nextNode != null) {
+    if (nextNode.value == k) {
+      //  перенаправляем ссылку через 1 елемент
+      currentNode.next = nextNode.next;
+      // проверяем на последний елемент список
+      if (nextNode.next == null) break;
+    }
+
+    //  перезаписываем начало и следующий елемент на шаг вперед
+    currentNode = nextNode;
+    nextNode = nextNode.next;
   }
   return l;
 };
