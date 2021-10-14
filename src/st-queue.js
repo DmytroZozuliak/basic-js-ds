@@ -38,11 +38,11 @@ module.exports = class Queue {
     //   проверяем, есть ли в очереди елементы
     if (this.head) {
       //   перезаписываем начало очереди на 1 шаг next
-      let head = this.head;
-      this.head = head.next;
-      return head.value;
+      let current = this.head;
+      this.head = current.next;
+      return current.value;
     }
-    return null;
+    return;
   }
 
   getUnderlyingList() {
